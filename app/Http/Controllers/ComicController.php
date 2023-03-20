@@ -64,14 +64,6 @@ class ComicController extends Controller
         ]);
 
         $new_comic = new Comic();
-        // $new_comic->title = $form_data['title'];
-        // $new_comic->slug = Comic::generateSlug($new_comic->title);
-        // $new_comic->thumb = $form_data['image'];
-        // $new_comic->description = $form_data['description'];
-        // $new_comic->series = $form_data['series'];
-        // $new_comic->price = $form_data['price'];
-        // $new_comic->sale_date = $form_data['sale_date'];
-        // $new_comic->type = $form_data['type'];
         $form_data['slug'] = Comic::generateSlug(($form_data['title']));
         $new_comic->fill($form_data);
         $new_comic->save();
@@ -135,6 +127,6 @@ class ComicController extends Controller
     {
         $comic->delete();
 
-        return redirect()->route('comics.index');
+        return redirect()->route('comics.index')->with('deleted', "Comic $comic->title was correctly deleted");;
     }
 }

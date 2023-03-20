@@ -4,6 +4,16 @@
     <div class="container">
         <h1>Add a new comic</h1>
 
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('comics.store') }}" method="POST">
             @csrf
 
@@ -13,8 +23,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
-                <input type="text" class="form-control" name="image" id="image" placeholder="Add image URL">
+                <label for="thumb" class="form-label">Image</label>
+                <input type="text" class="form-control" name="thumb" id="thumb" placeholder="Add image URL">
             </div>
 
             <div class="mb-3">
